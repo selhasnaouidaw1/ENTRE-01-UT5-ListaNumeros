@@ -3,7 +3,7 @@
  * La clase encapsula en un array
  * una lista de numeros
  * 
- * @author - 
+ * @author - Sara El Hasnaoui
  * 
  */
 import java.util.Arrays;
