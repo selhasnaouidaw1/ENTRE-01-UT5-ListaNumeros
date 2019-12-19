@@ -89,7 +89,9 @@ public class ListaNumeros
         vaciarLista(i);
         }*/
         for (int i = 0; i < pos; i++){
-            vaciarLista();
+            if (i==pos){
+                vaciarLista();
+            }
         }
 
     }
@@ -124,7 +126,7 @@ public class ListaNumeros
     public String toString() 
     {
         String str = "|";
-       for (int i= 0; i < numeros.length; i++){
+        for (int i= 0; i < numeros.length; i++){
             if(estaVacia()){
                 str = "| |";
             }
