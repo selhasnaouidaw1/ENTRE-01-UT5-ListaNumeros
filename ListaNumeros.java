@@ -51,7 +51,7 @@ public class ListaNumeros
             pos++;
             a = true;
 
-        }return a;
+        } return a;
 
     }
 
@@ -68,7 +68,7 @@ public class ListaNumeros
      */
     public boolean estaVacia() 
     {
-        return(numeros.length == pos - 1)? true : false;
+        return (numeros.length == pos - 1)? true : false;
 
     }
 
@@ -89,7 +89,7 @@ public class ListaNumeros
         vaciarLista(i);
         }*/
         for (int i = 0; i < pos; i++){
-            if (i==pos){
+            if (i == pos){
                 vaciarLista();
             }
         }
@@ -111,8 +111,8 @@ public class ListaNumeros
             else{
                 i++;
             }
-            return encontrado;
-        }
+            
+        }return encontrado;
 
     }
 
@@ -126,7 +126,7 @@ public class ListaNumeros
     public String toString() 
     {
         String str = "|";
-        for (int i= 0; i < numeros.length; i++){
+        for (int i = 0; i < numeros.length; i++){
             if(estaVacia()){
                 str = "| |";
             }
@@ -160,15 +160,19 @@ public class ListaNumeros
      * (ver detalles en el enunciado)
      */
     public int[] expandir() {
-        for(int i= 0; i < numeros.length; i++){
-            for(int j = 0; j < numeros[i].length; j++){
+        int [] copia2 = Arrays.copyOf(numeros, numeros.length);
+        for(int i= 0; i < copia2.length; i++){
+            for(int j = 0; j < copia2[i]; j++){
                 if(esImpar(numeros[i])){
                     throw new RuntimeException("Nº impar de elementos en el array, añada uno más");
 
-                }else{expandir();}
+                }else{
+                    expandir();
+
+                }
             }
         }
-        return null;
+        return copia2;//metodo incompleto
     }
 
     /**
@@ -189,10 +193,21 @@ public class ListaNumeros
      *  después de reorganizarParesImpares() quedaría {4, 2, 8, 3, 7, 9, 5, 11, 13}
      */
     public void reorganizarParesImpares() {
-        for (int i= 1; i < pos; i++){
-            int aux = numeros[i];
-            if(esImpar(aux)){
-                i++;
+        int x = 0;
+        int y = 0;
+        int z = 0;
+
+        for (int i = 0; i < numeros.length; i++){
+            for(int j = 0; j < numeros[i]; j++){
+                if(numeros[i] % 2 == 0){//en caso de que los nums sean impares 
+                    numeros[j] = z;
+                    x++;
+
+                }else{
+                    numeros[j] = z;
+                    y++;
+
+                }
 
             }
 
@@ -207,19 +222,13 @@ public class ListaNumeros
      *  que incluya los elementos del array ordenado
      */
     public ListaNumeros nuevaLista() {
-        int[] copia = new int [numeros.length];
-        System.arraycopy(numeros, 0, copia, 0, numeros.length);
-        for(int i = 0; i < copia.length - 1; i++){
-            int pos = i;
-            for(int j = i + 1; j < copia.length; j++){
-                if(copia[j] < copia[pos]){
-                    pos = j;
-                }
-            }
-            int aux = copia[pos];
-            copia[pos] = copia[i];
-            copia[i] = aux;
+        int[] copia = Arrays.copyOf(numeros, pos);
+        Arrays.sort(copia);
+        ListaNumeros nuevaLista = new ListaNumeros(pos);
+        for( int i = 0; i < pos; i++){
+            numeros[i] = copia[i];
         }
+        return nuevaLista;
 
     }
 
