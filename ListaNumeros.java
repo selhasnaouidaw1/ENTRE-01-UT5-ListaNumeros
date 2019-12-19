@@ -1,4 +1,5 @@
 
+
 /**
  * La clase encapsula en un array
  * una lista de numeros
@@ -13,6 +14,7 @@ public class ListaNumeros
     public static final int TAM_LISTA = 16;
     private int[] numeros;  
     private int pos;  
+    
 
     /**
      * Constructor de la clase ListaNumeros 
@@ -27,6 +29,8 @@ public class ListaNumeros
             throw new IllegalArgumentException("Valor no permitido para tamaño lista");
         }
         // completar
+        numeros = new int[n];
+        int pos = 0;
     }
 
     /**
