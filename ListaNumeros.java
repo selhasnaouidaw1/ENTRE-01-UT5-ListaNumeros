@@ -77,7 +77,7 @@ public class ListaNumeros
      */
     public int getTotalNumeros()
     {
-
+        return pos;//porque pos es la longitud logica.
     }
 
     /**
@@ -124,7 +124,7 @@ public class ListaNumeros
     public String toString() 
     {
         String str = "|";
-        for (int i= 0; i < numeros.length; i++){
+       for (int i= 0; i < numeros.length; i++){
             if(estaVacia()){
                 str = "| |";
             }
@@ -158,12 +158,12 @@ public class ListaNumeros
      * (ver detalles en el enunciado)
      */
     public int[] expandir() {
-        int contador = 0;
         for(int i= 0; i < numeros.length; i++){
-            for(int j= 0; numeros[i].length; j++){}
-            if(esImpar(j)){
-                throw new RuntimeException("Nº impar de elementos en el array, añada uno más");
+            for(int j = 0; j < numeros[i].length; j++){
+                if(esImpar(numeros[i])){
+                    throw new RuntimeException("Nº impar de elementos en el array, añada uno más");
 
+                }else{expandir();}
             }
         }
         return null;
@@ -187,9 +187,10 @@ public class ListaNumeros
      *  después de reorganizarParesImpares() quedaría {4, 2, 8, 3, 7, 9, 5, 11, 13}
      */
     public void reorganizarParesImpares() {
-        for (int i= 1; i < numeros.length; i++){
+        for (int i= 1; i < pos; i++){
             int aux = numeros[i];
-            if(numeros % 2 != 0){
+            if(esImpar(aux)){
+                i++;
 
             }
 
@@ -233,8 +234,17 @@ public class ListaNumeros
      */
     public int[][] toArray2D() 
     {
+        int[][] array2d;
+        array2d = new int[4][4]; //creacion array de 4 filas y 4 columnas
+        int i = 0;
+        for(int fila = 0; fila < array2d.length; fila++){
+            for(int columna= 0; columna < array2d[fila].length; columna++){
+                array2d[fila][columna] = numeros[i];
+                i ++;
+            }
 
-        return null;
+        }
+        return array2d;
     }
 
     /**
